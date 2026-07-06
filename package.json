@@ -1,0 +1,134 @@
+{
+  "name": "sftp-secure-edit",
+  "displayName": "SFTP Secure Edit",
+  "description": "Edita archivos remotos de forma segura por SFTP con soporte para multiples servidores.",
+  "version": "0.1.2",
+  "publisher": "jonnatech",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "media/icon.png",
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onView:sftpSecureEdit.servers",
+    "onCommand:sftpSecureEdit.addServer",
+    "onCommand:sftpSecureEdit.removeServer",
+    "onCommand:sftpSecureEdit.connectServer",
+    "onCommand:sftpSecureEdit.disconnectServer",
+    "onCommand:sftpSecureEdit.openConfig",
+    "onCommand:sftpSecureEdit.refresh",
+    "onFileSystem:sftp"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "sftpSecureEdit.addServer",
+        "title": "SFTP: Anadir servidor",
+        "icon": "$(add)"
+      },
+      {
+        "command": "sftpSecureEdit.removeServer",
+        "title": "SFTP: Eliminar servidor",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "sftpSecureEdit.connectServer",
+        "title": "SFTP: Conectar servidor",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "sftpSecureEdit.disconnectServer",
+        "title": "SFTP: Desconectar servidor",
+        "icon": "$(debug-disconnect)"
+      },
+      {
+        "command": "sftpSecureEdit.refresh",
+        "title": "SFTP: Refrescar servidores",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "sftpSecureEdit.openConfig",
+        "title": "SFTP: Editar configuracion (JSON)",
+        "icon": "$(json)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sftpSecureEdit",
+          "title": "SFTP Secure Edit",
+          "icon": "$(remote-explorer)"
+        }
+      ]
+    },
+    "views": {
+      "sftpSecureEdit": [
+        {
+          "id": "sftpSecureEdit.servers",
+          "name": "Servidores",
+          "icon": "$(server)"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "sftpSecureEdit.addServer",
+          "when": "view == sftpSecureEdit.servers",
+          "group": "navigation@1"
+        },
+        {
+          "command": "sftpSecureEdit.openConfig",
+          "when": "view == sftpSecureEdit.servers",
+          "group": "navigation@2"
+        },
+        {
+          "command": "sftpSecureEdit.refresh",
+          "when": "view == sftpSecureEdit.servers",
+          "group": "navigation@3"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "sftpSecureEdit.connectServer",
+          "when": "view == sftpSecureEdit.servers && viewItem == server-disconnected",
+          "group": "inline@1"
+        },
+        {
+          "command": "sftpSecureEdit.disconnectServer",
+          "when": "view == sftpSecureEdit.servers && viewItem == server-connected",
+          "group": "inline@1"
+        },
+        {
+          "command": "sftpSecureEdit.removeServer",
+          "when": "view == sftpSecureEdit.servers && viewItem =~ /^server-/",
+          "group": "inline@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "node esbuild.js --production",
+    "vsix": "vsce package --no-dependencies --allow-missing-repository --readme-path VSREADME.md",
+    "check-types": "tsc --noEmit",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "ssh2-sftp-client": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/ssh2-sftp-client": "^9.0.4",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.5.0"
+  }
+}

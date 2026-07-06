@@ -1,0 +1,16 @@
+.vscode/**
+.vscode-test/**
+.claude/**
+**/*.vsix
+favicon500x500.jpg
+README.md
+src/**
+node_modules/**
+.gitignore
+esbuild.js
+tsconfig.json
+**/*.map
+**/*.ts
+docker-compose.yml
+Dockerfile
+CLAUDE.md

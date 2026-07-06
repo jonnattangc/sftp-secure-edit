@@ -1,0 +1,17 @@
+services:
+    claude:
+      container_name: claude-jonnatech
+      image: claude:1.0.0
+      build: 
+        dockerfile: Dockerfile
+      restart: no
+      volumes:
+        - ./:/home/node/workspace
+      ports:
+        - 4000:4000
+        - 4001:4001
+      networks:
+        - db-net
+networks:
+  db-net:
+
