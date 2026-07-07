@@ -1,6 +1,6 @@
 # SFTP Secure Edit
 
-![Version](https://img.shields.io/badge/version-0.1.2-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-007ACC?logo=visualstudiocode)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -46,7 +46,7 @@ Los archivos remotos se abren como pestañas nativas del editor: al pulsar **Gua
 Desde el archivo `.vsix` empaquetado:
 
 ```bash
-code --install-extension sftp-secure-edit-0.1.2.vsix
+code --install-extension sftp-secure-edit-1.0.0.vsix
 ```
 
 O desde la interfaz: vista **Extensiones** → menú **⋯** → **Install from VSIX...**.
